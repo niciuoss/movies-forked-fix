@@ -1,0 +1,78 @@
+.toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    gap: 12px;
+}
+
+.checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: relative;
+    width: 52px;
+    height: 28px;
+    background: #e0e0e0;
+    border-radius: 14px;
+    transition: all 0.3s ease;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    left: 3px;
+    top: 3px;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.checkbox:checked + .slider {
+    background: linear-gradient(135deg, #e60b1c 0%, #ff4757 100%);
+}
+
+.checkbox:checked + .slider::before {
+    transform: translateX(24px);
+}
+
+.label {
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    font-weight: 500;
+    align-items: center;
+    display: flex;
+    gap: 6px;
+}
+
+.star{
+    font-size: 1.1rem;
+}
+
+@media (max-width: 640px) {
+    .label {
+        font-size: 1.1rem;
+    }
+
+    .slider {
+        width: 48px;
+        height: 26px;
+    }
+
+    .slider::before {
+        width: 20px;
+        height: 20px;
+    }
+
+    .checkbox:checked + .slider::before {
+        transform: translateX(22px);
+    }
+}
