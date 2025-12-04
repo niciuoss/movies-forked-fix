@@ -29,22 +29,24 @@ export interface MovieFilters {
 
 export interface StrapiMovie {
   id: number;
-  attributes: {
-    title: string;
-    original_title: string;
-    original_language: string;
-    overview: string;
-    poster_path: string;
-    backdrop_path: string;
-    release_date: string;
-    vote_average: number;
-    vote_count: number;
-    popularity: number;
-    adult: boolean;
-    video: boolean;
-    featured: boolean;
-    genre_ids: number[];
-  };
+  documentId?: string;
+  adult: boolean | null;
+  backdrop_path: string;
+  genre_ids: number[];
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean | null;
+  vote_average: number;
+  vote_count: number;
+  featured: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+  publishedAt?: string;
 }
 
 export interface StrapiResponse {
