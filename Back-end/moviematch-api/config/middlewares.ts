@@ -6,9 +6,10 @@ module.exports = [
     name: 'strapi::cors',
     config: {
       enabled: true,
-      origin: ['http://localhost:5173', 'http://localhost:3000'],
+      origin: ['http://localhost:5432', 'http://127.0.0.1:5432'],
       headers: '*',
-    }
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
+    },
   },
   'strapi::poweredBy',
   'strapi::query',
