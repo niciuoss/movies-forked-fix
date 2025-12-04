@@ -1,4 +1,4 @@
-# 🎬 CineMatch - Listagem de Filmes
+# 🎬 MovieMatch - Listagem de Filmes
 
 Aplicação moderna para busca e descoberta de filmes com integração Strapi CMS.
 
