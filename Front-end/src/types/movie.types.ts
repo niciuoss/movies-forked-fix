@@ -32,21 +32,22 @@ export interface StrapiMovie {
   attributes: {
     title: string;
     original_title: string;
+    original_language: string;
     overview: string;
     poster_path: string;
     backdrop_path: string;
     release_date: string;
+    vote_average: number;
     vote_count: number;
     popularity: number;
     adult: boolean;
+    video: boolean;
     featured: boolean;
     genre_ids: number[];
-    original_language: string;
-    video: boolean;
   };
 }
 
-export interface StrapiResponse{
+export interface StrapiResponse {
   data: StrapiMovie[];
   meta: {
     pagination: {
@@ -54,6 +55,6 @@ export interface StrapiResponse{
       pageSize: number;
       pageCount: number;
       total: number;
-    }
-  }
+    };
+  };
 }

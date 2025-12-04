@@ -34,3 +34,7 @@ coverage/
 # Sistema operacional
 .DS_Store
 Thumbs.db
+
+#Arquivo .env
+.env
+.env.local
