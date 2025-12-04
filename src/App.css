@@ -1,0 +1,88 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+        "Noto Sans", "Liberation Sans", Arial, sans-serif;
+    background-color: #f8f9fa;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    flex: 1;
+    padding: 40px 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.filters {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    flex-direction: column;
+}
+
+.filterRow {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.results {
+    margin-bottom: 24px;
+}
+
+.resultsCount {
+    font-size: 0.95rem;
+    color: #666;
+    margin: 0;
+}
+
+.emptyState {
+    text-align: center;
+    color: #999;
+    padding: 80px 20px;
+}
+
+.emptyStateIcon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+    opacity: 0.5;
+    display: block;
+}
+
+.emptyState h3 {
+    margin: 0 0 8px 0;
+    color: #666;
+    font-size: 1.5rem;
+}
+
+.emptyState p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+    .main{
+        padding: 24px 16px;
+    }
+    
+    .filterRow {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
