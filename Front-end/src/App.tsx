@@ -6,38 +6,27 @@ import CategoryFilter from './components/CategoryFilter/CategoryFilter';
 import FeaturedToggle from './components/FeaturedToggle/FeaturedToggle';
 import MovieModal from './components/MovieModal/MovieModal';
 import { Movie, Genre } from './types/movie.types';
-import { filterMovies, getAvailableGenreIds, addFeaturedFlag } from './utils/movieHelpers';
+import { filterMovies, getAvailableGenreIds, /*addFeaturedFlag*/ } from './utils/movieHelpers';
+import { useMovies } from './hooks/useMovies'
 
-import popularMovies from './data/popular.json';
-import nowPlayingMovies from './data/now-playing.json';
-import upcomingMovies from './data/upcoming.json';
-import topRatedMovies from './data/top-rated.json';
+// import popularMovies from './data/popular.json';
+// import nowPlayingMovies from './data/now-playing.json';
+// import upcomingMovies from './data/upcoming.json';
+// import topRatedMovies from './data/top-rated.json';
 import genresData from './data/genres.json';
 
 import './App.css';
 
-const FEATURED_MOVIE_IDS = [695721, 1029575, 891699, 787699, 8871];
+//const FEATURED_MOVIE_IDS = [695721, 1029575, 891699, 787699, 8871];
 
 export default function App() {
-
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedGenre, setSelectedGenre] = useState<number | null>(null);
   const [showOnlyFeatured, setShowOnlyFeatured] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
-  const allMovies = useMemo(() => {
-    const movieMap = new Map<number, Movie>();
+  const { movies: allMovies, loading, source } = useMovies();
 
-    [...popularMovies, ...nowPlayingMovies, ...topRatedMovies, ...upcomingMovies].forEach(movie => {
-      if(!movieMap.has(movie.id)) {
-        movieMap.set(movie.id, movie as Movie);
-      }
-   });
-
-    const uniqueMovies = Array.from(movieMap.values());
-    return addFeaturedFlag(uniqueMovies, FEATURED_MOVIE_IDS);
-    }, []);
-  
   const filteredMovies = useMemo(() => {
     return filterMovies(allMovies, searchQuery, selectedGenre, showOnlyFeatured);
   }, [allMovies, searchQuery, selectedGenre, showOnlyFeatured]);
@@ -52,25 +41,47 @@ export default function App() {
 
   const genres = genresData as Genre[];
 
+  if (loading) {
+    return (
+      <div className="app">
+        <Header />
+        <main className="main">
+          <div className="container">
+            <div className="loadingState">
+              <div className="spinner"></div>
+              <p>Carregando filmes...</p>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
   return (
     <div className="app">
       <Header />
-
+      
       <main className="main">
         <div className="container">
+          {source === 'local' && (
+            <div className="dataSourceBanner">
+              ℹ️ Usando dados locais. Configure o Strapi para usar a API.
+            </div>
+          )}
+
           <div className="filters">
-            <SearchBar 
+            <SearchBar
               value={searchQuery}
               onChange={setSearchQuery}
-              placeholder='Buscar filmes por título...'
+              placeholder="Buscar filmes por título..."
             />
 
-            <div className="filterRows">
+            <div className="filterRow">
               <CategoryFilter
                 genres={genres}
-                availableGenreIds={availableGenreIds}
                 selectedGenre={selectedGenre}
                 onSelectGenre={setSelectedGenre}
+                availableGenreIds={availableGenreIds}
               />
 
               <FeaturedToggle
@@ -86,13 +97,13 @@ export default function App() {
             </p>
           </div>
 
-          <MovieList
+          <MovieList 
             movies={filteredMovies}
             onMovieClick={setSelectedMovie}
           />
 
           {filteredMovies.length === 0 && (
-            <div className="emptyResults">
+            <div className="emptyState">
               <span className="emptyStateIcon">🎬</span>
               <h3>Nenhum filme encontrado</h3>
               <p>Experimente ajustar seus filtros ou a busca para encontrar algo.</p>
@@ -107,8 +118,7 @@ export default function App() {
         onClose={() => setSelectedMovie(null)}
       />
     </div>
-  )
-  
+  );
 }
 
 
