@@ -14,20 +14,20 @@ export default function SearchBar({ value, onChange, placeholder="Buscar filmes.
 
   return (
     <div className={styles.searchBar}>
-      <svg
-      className={styles.searchIcon}
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
+      <svg 
+        className={styles.searchIcon} 
+        xmlns="http://www.w3.org/2000/svg"
+        width="20" 
+        height="20" 
+        viewBox="0 0 24 24" 
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       >
-        <path 
-          d="M9 17a8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
       </svg>
       <input
         type="text"
