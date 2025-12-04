@@ -1,16 +1,22 @@
 {
-    "include": [
-        "./src/**/*"
-    ],
+    "include": ["./src/**/*"],
+    
     "compilerOptions": {
-        "resolveJsonModule": true,
         "esModuleInterop": true,
+        "useDefineForClassFields": true,
         "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true,
+        "lib": ["ES2020", "dom", "DOM.Iterable"],
+        
+        "allowImportingTsExtensions": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "jsx": "react-jsx",
+
         "strict": true,
-        "lib": [
-            "dom",
-            "es2015"
-        ],
-        "jsx": "react-jsx"
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true
     }
 }
